@@ -14,12 +14,12 @@ function App() {
   <BrowserRouter>
     <Navbar/>
     <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/measurements' element={<Measurements/>}/>
-      <Route path='/top' element={<Top/>}/>
-      <Route path='/fulldress' element={<FullDress/>}/>
-      <Route path='/bottom' element={<Bottom/>}/>
-      <Route path='/about' element={<About/>}/>
+      <Route path='/Yashrxx/TAT/' element={<Home/>}/>
+      <Route path='/Yashrxx/TAT/measurements' element={<Measurements/>}/>
+      <Route path='/Yashrxx/TAT/top' element={<Top/>}/>
+      <Route path='/Yashrxx/TAT/fulldress' element={<FullDress/>}/>
+      <Route path='/Yashrxx/TAT/bottom' element={<Bottom/>}/>
+      <Route path='/Yashrxx/TAT/about' element={<About/>}/>
     </Routes>
   </BrowserRouter>
   );
