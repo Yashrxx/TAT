@@ -61,14 +61,8 @@
 }
 
 .locate-form {
-    transform: translateX(0%);
-}
-
-.locate-form {
     border: 2px solid burlywood;
-
-    .forms {
-        width: 100%;
-    }
+    transform: translateX(0%);
+    width: 100%;
 }
 }
