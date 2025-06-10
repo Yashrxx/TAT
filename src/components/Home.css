@@ -33,11 +33,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid burlywood;
+  border: 2px solid greenyellow;
+  box-shadow: 
+    0 0 5px greenyellow,
+    0 0 10px greenyellow,
+    0 0 15px limegreen,
+    0 0 20px limegreen,
+    0 0 25px limegreen;
+    /* animation: neonPulse 2s infinite ease-in-out; */
 }
-
+/* @keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 0 10px greenyellow,
+      0 0 20px greenyellow,
+      0 0 30px limegreen;
+  }
+  50% {
+    box-shadow:
+      0 0 20px greenyellow,
+      0 0 40px greenyellow,
+      0 0 60px limegreen;
+  }
+  100% {
+    box-shadow:
+      0 0 10px greenyellow,
+      0 0 20px greenyellow,
+      0 0 30px limegreen;
+  } */
+/* } */
 .forms {
   width: 100%;
+  h1{
+    text-shadow: 1px 1px 5px greenyellow;
+  }
 }
 
 .forms input::placeholder {
