@@ -11,10 +11,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  
   return (
     <BrowserRouter basename='/TAT'>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/measurements' element={<Measurements />} />

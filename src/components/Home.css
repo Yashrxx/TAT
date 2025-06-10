@@ -35,11 +35,11 @@
   align-items: center;
   border: 2px solid greenyellow;
   box-shadow: 
-    0 0 5px greenyellow,
-    0 0 10px greenyellow,
-    0 0 15px limegreen,
-    0 0 20px limegreen,
-    0 0 25px limegreen;
+    0 0 2px greenyellow,
+    0 0 4px greenyellow,
+    0 0 6px limegreen,
+    0 0 8px limegreen,
+    0 0 10px limegreen;
     /* animation: neonPulse 2s infinite ease-in-out; */
 }
 /* @keyframes neonPulse {

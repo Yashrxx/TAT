@@ -1,34 +1,34 @@
-import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import TAT from '../assets/img/TAT_Logo.jpeg'
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/" style={{color:"white"}}>TAT</a>
+                <a className="navbar-brand" href="/" ><img style={{height:"25px",width:"25px",filter:"invert(1)"}} src={TAT} alt="Error 404"></img></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/" style={{color:"white"}}>Home</Link>
+                            <Link className="nav-link active" aria-current="page" to="/" >Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/measurements" style={{color:"white"}}>Measurements</Link>
+                            <Link className="nav-link" to="/measurements" >Measurements</Link>
                         </li>
                         
                         <li className="nav-item">
-                            <Link className="nav-link" to="/fulldress" style={{color:"white"}}>FullDress</Link>
+                            <Link className="nav-link" to="/fulldress" >FullDress</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/top" style={{color:"white"}}>Top</Link>
+                            <Link className="nav-link" to="/top" >Top</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/bottom" style={{color:"white"}}>Bottom</Link>
+                            <Link className="nav-link" to="/bottom" >Bottom</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" aria-disabled="true" to="/about" style={{color:"white"}}>AboutUs</Link>
+                            <Link className="nav-link" aria-disabled="true" to="/about" >AboutUs</Link>
                         </li>
                     </ul>
                 </div>
