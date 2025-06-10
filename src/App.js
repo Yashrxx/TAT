@@ -13,7 +13,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
   
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/TAT'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
