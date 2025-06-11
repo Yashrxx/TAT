@@ -1,7 +1,7 @@
 import './About.css'
 import Aditi from '../assets/img/aditiimg.jpeg'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-const About = () => {
+const About = (props) => {
   return (
     <div className='abt'>
       <div className="imgh">
@@ -9,11 +9,11 @@ const About = () => {
       </div>
       <div className="conth">
         <div className="txtmy">
-          <h2 style={{ color: "white", fontWeight: "bold" }}>About us</h2>
+          <h2 style={{color : props.mode==='dark'?'white':'black' ,fontWeight: "bold" }}>About us</h2>
           <h1 style={{ color: "#D91747", fontWeight: "bold" }}>Fashion designer</h1>
-          <p>Hi, I’m a passionate fashion designer who recently completed my design course and turned my love for fashion into a profession. I specialize in creating custom-made outfits that are stylish, comfortable, and tailored to your unique taste. Every piece is crafted with creativity, care, and attention to detail—because you deserve fashion that fits both your body and your personality.</p>
+          <p style={{color : props.mode==='dark'?'white':'black'}}>Hi, I’m a passionate fashion designer who recently completed my design course and turned my love for fashion into a profession. I specialize in creating custom-made outfits that are stylish, comfortable, and tailored to your unique taste. Every piece is crafted with creativity, care, and attention to detail—because you deserve fashion that fits both your body and your personality.</p>
         </div>
-        <div className="contactInfo">
+        <div className="contactInfo" style={{color : props.mode==='dark'?'thistle':'black'}}>
           <div className="ci-1">
             <p><FiberManualRecordIcon fontSize='small' />  Name : Aditi Jain</p>
             <p><FiberManualRecordIcon fontSize='small' />  Email : aditisushil30@gmail.com</p>

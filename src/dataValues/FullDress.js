@@ -1,10 +1,9 @@
-import React from 'react'
 import { useState } from 'react';
 import './Fulldress.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useNavigate } from 'react-router-dom';
-const FullDress = () => {
+
+const FullDress = (props) => {
 
     const [shoulderShoulder, setShoulderShoulder] = useState('');
     const [shoulderApex, setShoulderApex] = useState('');
@@ -86,8 +85,8 @@ const FullDress = () => {
     return (
         <>
             <section className='stc'>
-                <h1>Full dress - Measurements</h1>
-                <form className='filler' onSubmit={handlesubmit}>
+                <h1 style={{color : props.mode==='dark'?'white':'black'}}>Full dress - Measurements</h1>
+                <form className='filler' onSubmit={handlesubmit} style={{color : props.mode==='dark'?'white':'black'}}>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Shoulder-Shoulder</label>
                         <input required type="number" className="form-control" min="0" step="1" pattern="\d*" value={shoulderShoulder} placeholder={'Shoulder to Shoulder (inch)'} onChange={(e) => setShoulderShoulder(e.target.value)} />

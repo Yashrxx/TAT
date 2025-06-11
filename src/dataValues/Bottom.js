@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import './Bottom.css'
 
-const Bottom = () => {
+const Bottom = (props) => {
   const [shoulderShoulder, setShoulderShoulder] = useState('');
     const [shoulderApex, setShoulderApex] = useState('');
     const [shoulderUnderBurst, setShoulderUnderBurst] = useState('');
@@ -49,46 +49,9 @@ const Bottom = () => {
         }
     }
   return (
-    // <div className="form-container">
-    //   <div className="form-row">
-    //     <label>Bust Size</label>
-    //     <input type="number" defaultValue={90} />
-    //     <select>
-    //       <option>cm</option>
-    //       <option>inch</option>
-    //     </select>
-    //   </div>
-
-    //   <div className="form-row">
-    //     <label>Waist Size</label>
-    //     <input type="number" defaultValue={60} />
-    //     <select>
-    //       <option>cm</option>
-    //       <option>inch</option>
-    //     </select>
-    //   </div>
-
-    //   <div className="form-row">
-    //     <label>High Hip Size</label>
-    //     <input type="number" defaultValue={80} />
-    //     <select>
-    //       <option>cm</option>
-    //       <option>inch</option>
-    //     </select>
-    //   </div>
-
-    //   <div className="form-row">
-    //     <label>Hip Size</label>
-    //     <input type="number" defaultValue={90} />
-    //     <select>
-    //       <option>cm</option>
-    //       <option>inch</option>
-    //     </select>
-    //   </div>
-    // </div>
     <section className='stc'>
-            <h1>Bottom - Measurements</h1>
-            <form className='filler' onSubmit={handlesubmit}>
+            <h1 style={{color : props.mode==='dark'?'white':'black'}}>Bottom - Measurements</h1>
+            <form className='filler' onSubmit={handlesubmit} style={{color : props.mode==='dark'?'white':'black'}}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Shoulder-Shoulder</label>
                     <input type="text" className="form-control" value={shoulderShoulder} placeholder={'Shoulder to Shoulder (inch)'} onChange={(e) => setShoulderShoulder(e.target.value)} />

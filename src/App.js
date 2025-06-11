@@ -9,18 +9,56 @@ import About from './components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useState ,useEffect } from 'react';
 
 function App() {
+  const [mode, setmode] = useState('light');
+  const [btnText, setbtnTxt] = useState('Enable Dark Mode')
+  // const[alert,setalert]=useState(null);
+  // const showalert=(message,type)=>{
+  //   setalert({
+  //     msg:message,
+  //     type:type
+  // })
+  // setTimeout(() => {
+  //   setalert(null)
+  // }, 2000);
+  // }
+  const removebodycls = () => {
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-primary')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-warning')
+  }
+  const toggleMode = (cls) => {
+    removebodycls();
+    document.body.classList.add('bg-' + cls);
+
+    if (mode === 'light') {
+      setmode('dark');
+      setbtnTxt('Enable Light Mode');
+      document.body.style.backgroundColor = '#141414';
+    } else {
+      setmode('light');
+      setbtnTxt('Enable Dark Mode');
+      document.body.style.backgroundColor = 'white';
+    }
+  };
+  useEffect(() => {
+    console.log("Current mode is:", mode);
+  }, [mode]);
   return (
     <BrowserRouter basename='/TAT'>
-      <Navbar/>
+      <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/measurements' element={<Measurements />} />
-        <Route path='/top' element={<Top />} />
-        <Route path='/fulldress' element={<FullDress />} />
-        <Route path='/bottom' element={<Bottom />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/measurements' element={<Measurements mode={mode}/>} />
+        <Route path='/top' element={<Top mode={mode}/>} />
+        <Route path='/fulldress' element={<FullDress mode={mode} />} />
+        <Route path='/bottom' element={<Bottom mode={mode}/>} />
+        <Route path='/about' element={<About mode={mode}/>} />
       </Routes>
     </BrowserRouter>
   );
