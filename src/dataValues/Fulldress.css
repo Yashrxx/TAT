@@ -69,20 +69,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
   position: relative;
 }
 .stc h1 {
   margin-bottom: 40px;
   z-index: 2;
-  position: relative;
   font-size: 22px;
   font-weight: 600;
 }
 .filler {
-  position: relative;
+  /* position: relative; */
   z-index: 2;
-  width: 100%;
+  width: 80%;
 }
 .filler input {
   width: 40%;
