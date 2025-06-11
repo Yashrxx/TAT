@@ -9,7 +9,7 @@ import About from './components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState ,useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [mode, setmode] = useState('light');
@@ -46,9 +46,6 @@ function App() {
       document.body.style.backgroundColor = 'white';
     }
   };
-  useEffect(() => {
-    console.log("Current mode is:", mode);
-  }, [mode]);
   return (
     <BrowserRouter basename='/TAT'>
       <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} />

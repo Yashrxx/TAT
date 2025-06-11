@@ -25,3 +25,8 @@
 .form-row select {
   padding: 4px;
 }
+@media (max-width:550px){
+#buttx{
+  width: 100%;
+}
+}
