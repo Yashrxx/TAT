@@ -8,7 +8,7 @@ const Measurements = () => {
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {
-    navigate(path); // Change to your route
+    navigate(path);
   };
   return (
     <div className='box'>

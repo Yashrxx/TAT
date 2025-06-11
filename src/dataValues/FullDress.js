@@ -140,7 +140,7 @@ const FullDress = (props) => {
                         <input required type="number" className="form-control" min="0" step="1" pattern="\d*" value={shoulderNavel} placeholder={'shoulderNavel (inch)'} onChange={(e) => setShoulderNavel(e.target.value)} />
                     </div>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-primary w-25">
+                        <button type="submit" className="btn btn-primary">
                             Submit
                         </button>
                     </div>
