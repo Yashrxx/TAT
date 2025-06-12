@@ -13,6 +13,16 @@ router.post('/dress', async (req, res) => {
   }
 });
 
+router.get('/dress', async (req, res) => {
+  try {
+    const data = await DrsM.find();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+});
+
+
 router.post('/tx', async (req, res) => {
   try {
     const measurement = new Top(req.body);

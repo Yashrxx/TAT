@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
-const mongoURI="mongodb://127.0.0.1:27017/formFiller"
+require('dotenv').config();
 
-const connectToMongo=()=>{
-    mongoose.connect(mongoURI)
-    .then(()=>{
-        console.log("Connected to MongoDB")
-    })
-    .catch(err=>{
-        console.log("Connection Error ",err)
-    })
-}
-module.exports=connectToMongo;
+const mongoURI = process.env.MONGO_URI;
+//mongodb+srv://yashrx:Kapil_jain01@tat.rufrpql.mongodb.net/?retryWrites=true&w=majority&appName=TAT
+const connectToMongo = () => {
+console.log("MONGO_URI is:", mongoURI);
+  mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log(" Connected to MongoDB Atlas");
+  })
+  .catch(err => {
+    console.error(" MongoDB connection error:", err);
+    process.exit(1); // Exit the process if connection fails
+  });
+};
+
+module.exports = connectToMongo;
