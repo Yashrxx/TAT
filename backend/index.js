@@ -9,7 +9,9 @@ const cors = require('cors');
 
 app.use(cors({
   origin: 'https://yashrxx.github.io',
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 fetch('https://tat-formfiller.onrender.com/api/auth/btx', {
@@ -22,6 +24,8 @@ fetch('https://tat-formfiller.onrender.com/api/auth/btx', {
 });
 
 app.use(express.json());
+
+app.options('*', cors());
 
 app.get("/", (req, res) => {
     res.status(200).json({ success: true, message: "formFiller Backend is Live!" });
