@@ -4,7 +4,7 @@ connectToMongo();
 
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const cors = require('cors');
 
 app.use(cors({
@@ -12,7 +12,7 @@ app.use(cors({
   credentials: true
 }));
 
-fetch('https://tat-formfiller.onrender.com/api/auth/submit', {
+fetch('https://tat-formfiller.onrender.com/api/auth/btx', {
   method: 'POST',
   credentials: 'include',
   headers: {
