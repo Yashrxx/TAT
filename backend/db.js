@@ -2,13 +2,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const mongoURI = process.env.MONGO_URI;
-//mongodb+srv://yashrx:Kapil_jain01@tat.rufrpql.mongodb.net/?retryWrites=true&w=majority&appName=TAT
 const connectToMongo = () => {
 console.log("MONGO_URI is:", mongoURI);
-  mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  mongoose.connect(mongoURI)
   .then(() => {
     console.log(" Connected to MongoDB Atlas");
   })

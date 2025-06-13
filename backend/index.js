@@ -8,9 +8,18 @@ const port = 5000;
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'https://yashrxx.github.io',
   credentials: true
 }));
+
+// fetch('https://formfiller-backend.onrender.com/api/auth/submit', {
+//   method: 'POST',
+//   credentials: 'include',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(data)
+// });
 
 app.use(express.json());
 
