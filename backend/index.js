@@ -14,14 +14,14 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-fetch('https://tat-formfiller.onrender.com/api/auth/btx', {
-  method: 'POST',
-  credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-});
+// fetch('https://tat-formfiller.onrender.com/api/auth/btx', {
+//   method: 'POST',
+//   credentials: 'include',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(data)
+// });
 
 app.use(express.json());
 
