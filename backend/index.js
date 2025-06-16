@@ -7,6 +7,24 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 
+console.log("🛠 Starting server...");
+
+try {
+  // Insert your app.use(), routes, etc.
+  
+  // At the very bottom:
+  app._router.stack.forEach(layer => {
+    if (layer.route) {
+      console.log('📦 Route:', layer.route.path);
+    } else if (layer.name === 'router') {
+      console.log('🧱 Router mount point:', layer.regexp);
+    }
+  });
+} catch (err) {
+  console.error('🚨 ROUTING ERROR:', err.message);
+  throw err;
+}
+
 app.use(cors({
   origin: 'https://yashrxx.github.io',
   credentials: true,
