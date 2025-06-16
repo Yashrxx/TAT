@@ -28,20 +28,6 @@ app.use('/api/auth', require('./routes/auth'));
 // Debug all registered routes (after they are defined, before listening)
 console.log("🛠 Starting server...");
 
-try {
-  app._router.stack.forEach(layer => {
-    if (layer.route) {
-      console.log('Route:', layer.route.path);
-    } else if (layer.name === 'router') {
-      console.log('Router mount point:', layer.regexp);
-    }
-  });
-} catch (err) {
-  const errorMessage = err?.stack || err?.message || 'Unknown error';
-  console.error('ROUTING ERROR:', errorMessage);
-  throw err ?? new Error('Unknown error in routing');
-}
-
 // Start Server
 app.listen(port, '0.0.0.0', () => {
   console.log(` formFiller backend listening on port ${port}`);
