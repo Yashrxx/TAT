@@ -31,14 +31,14 @@ console.log("🛠 Starting server...");
 try {
   app._router.stack.forEach(layer => {
     if (layer.route) {
-      console.log('📦 Route:', layer.route.path);
+      console.log('Route:', layer.route.path);
     } else if (layer.name === 'router') {
-      console.log('🧱 Router mount point:', layer.regexp);
+      console.log('Router mount point:', layer.regexp);
     }
   });
 } catch (err) {
-  console.error('ROUTING ERROR:', err?.stack || err?.message || 'Unknown routing error');
-  // Do not throw anything here
+  console.error('ROUTING ERROR:', err?.stack || err?.message || 'Unknown error');
+  throw err || new Error('Unknown error in routing');
 }
 
 // Start Server
