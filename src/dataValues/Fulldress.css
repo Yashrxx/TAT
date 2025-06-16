@@ -1,0 +1,114 @@
+.stc {
+  /* background-image: url('../assets/img/wood-blk-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; */
+  /* background-color: #141414; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  /* color: white; */
+  z-index: 100;
+}
+
+.stc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.stc h1 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 2;
+  position: relative;
+  color: white;
+  font-size: 40px;
+  text-shadow: 
+  0 0 2px white,
+  0 0 4px wheat,
+  0 0 6px white;
+}
+
+.filler {
+  position: relative;
+  z-index: 2;
+  width: 60%;
+}
+
+.filler input {
+  width: 75%;
+}
+
+.filler .mb-3 {
+  display: flex;
+  margin-left: 5px;
+  gap: 10px;
+}
+
+.filler .mb-3 label {
+  min-width: 200px;
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+}
+.text-center{
+  margin-bottom: 20px;
+}
+
+@media (max-width:550px){
+    .stc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.stc h1 {
+  margin-bottom: 40px;
+  z-index: 2;
+  font-size: 22px;
+  font-weight: 600;
+}
+.filler {
+  /* position: relative; */
+  z-index: 2;
+  width: 90%;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
+.filler input {
+  width: 40%;
+}
+.filler .mb-3 {
+  display: flex;
+  gap: 2px;
+}
+
+.filler .mb-3 label {
+  min-width: 140px;
+  /* border: 2px solid red; */
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+}
+#buttx{
+  width: 100%;
+}
+.mb-3{
+  /* border: 2px solid brown; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+}

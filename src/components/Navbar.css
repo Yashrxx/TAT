@@ -1,0 +1,14 @@
+.navbar{
+    /* background-color: #141414; */
+    background-color: white;
+    color: black;
+    border-bottom: lightblue;
+    box-shadow: 
+    0 0 4px yellowgreen,
+    0 0 6px yellowgreen,
+    0 0 8px limegreen;
+
+    .corner{
+        margin-right: 0px;
+    }
+}
