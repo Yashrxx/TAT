@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TAT/static/css/main.020a9e21.css",
-    "main.js": "/TAT/static/js/main.92a88d08.js",
+    "main.js": "/TAT/static/js/main.75fa59eb.js",
     "static/js/453.05c4eb3b.chunk.js": "/TAT/static/js/453.05c4eb3b.chunk.js",
     "static/media/blk-bg.png": "/TAT/static/media/blk-bg.3f790e6a57f2f45a3618.png",
     "static/media/aditiimg.jpeg": "/TAT/static/media/aditiimg.1f6f9eb5a02f3e033529.jpeg",
@@ -9,11 +9,11 @@
     "static/media/TAT_Logo.jpeg": "/TAT/static/media/TAT_Logo.f3506ade23c4ee9b2fa1.jpeg",
     "index.html": "/TAT/index.html",
     "main.020a9e21.css.map": "/TAT/static/css/main.020a9e21.css.map",
-    "main.92a88d08.js.map": "/TAT/static/js/main.92a88d08.js.map",
+    "main.75fa59eb.js.map": "/TAT/static/js/main.75fa59eb.js.map",
     "453.05c4eb3b.chunk.js.map": "/TAT/static/js/453.05c4eb3b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.020a9e21.css",
-    "static/js/main.92a88d08.js"
+    "static/js/main.75fa59eb.js"
   ]
 }
