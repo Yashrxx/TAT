@@ -37,8 +37,8 @@ try {
     }
   });
 } catch (err) {
-  console.error('ROUTING ERROR:', err.message);
-  throw err;
+  console.error('ROUTING ERROR:', err?.stack || err?.message || 'Unknown error');
+  throw err || new Error('Unknown error in routing');
 }
 
 // Start Server
