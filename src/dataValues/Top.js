@@ -32,7 +32,7 @@ const Top = (props) => {
     const handlesubmit = async (e) => {
             e.preventDefault();
             try {
-                const response = await fetch("https://tat-formfiller.onrender.com/api/auth/tx", {
+                const response = await fetch("https://tat-f2rq.onrender.com/api/auth/tx", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"

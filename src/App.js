@@ -14,16 +14,6 @@ import { useState } from 'react';
 function App() {
   const [mode, setmode] = useState('light');
   const [btnText, setbtnTxt] = useState('Enable Dark Mode')
-  // const[alert,setalert]=useState(null);
-  // const showalert=(message,type)=>{
-  //   setalert({
-  //     msg:message,
-  //     type:type
-  // })
-  // setTimeout(() => {
-  //   setalert(null)
-  // }, 2000);
-  // }
   const removebodycls = () => {
     document.body.classList.remove('bg-light')
     document.body.classList.remove('bg-dark')

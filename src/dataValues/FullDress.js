@@ -38,7 +38,7 @@ const FullDress = (props) => {
     const handlesubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://tat-formfiller.onrender.com/api/auth/dress", {
+            const response = await fetch("https://tat-f2rq.onrender.com/api/auth/dress", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
