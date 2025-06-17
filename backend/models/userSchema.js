@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minLength: 3
+    minlength: 3
   },
   email: {
     type: String,
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    minLength: 10
+    minlength: 10
   },
   password: {
     type: String,

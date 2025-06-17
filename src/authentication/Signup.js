@@ -21,7 +21,7 @@ const Signup = (props) => {
         const trimmedData = {
             name: name.trim(),
             email: email.trim(),
-            phone: phone.trim(),
+            phone: phone.trim().toString(),
             password
         }
         try {
@@ -30,7 +30,7 @@ const Signup = (props) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ trimmedData })
+                body: JSON.stringify( trimmedData )
             });
 
             const text = await response.text(); // Read raw response first
@@ -40,6 +40,7 @@ const Signup = (props) => {
             try {
                 json = JSON.parse(text); // Try parsing JSON
             } catch (error) {
+                console.error(error.message);
                 throw new Error("Response is not valid JSON");
             }
 
