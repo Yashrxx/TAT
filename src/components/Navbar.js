@@ -37,6 +37,7 @@ const Navbar = (props) => {
                             <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
                             <label className="form-check-label" onClick={props.toggleMode} htmlFor="flexSwitchCheckDefault" >{props.btnText}</label>
                         </div>
+                        <Link to='/signup'>Signup</Link>
                 </div>
             </div>
         </nav>

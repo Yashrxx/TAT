@@ -1,6 +1,17 @@
 const express=require('express')
 const router=express.Router()
 const { DrsM, Top, Bottom } = require('../models/drsM.js');
+const User = require('../models/userSchema.js');
+
+router.post('/user', async (req, res) => {
+  const { name, number, address } = req.body;
+  try {
+    const user = await User.create({ name, number, address });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: 'Error creating user' });
+  }
+});
 
 router.post('/dress', async (req, res) => {
   try {

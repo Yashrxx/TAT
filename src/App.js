@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import Signup from './authentication/Signup'
 
 function App() {
   const [mode, setmode] = useState('light');
@@ -46,6 +47,7 @@ function App() {
         <Route path='/fulldress' element={<FullDress mode={mode} />} />
         <Route path='/bottom' element={<Bottom mode={mode}/>} />
         <Route path='/about' element={<About mode={mode}/>} />
+        <Route path='/signup' element={<Signup mode={mode}/>} />
       </Routes>
     </BrowserRouter>
   );
