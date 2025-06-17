@@ -1,5 +1,5 @@
-const express=require('express')
-const router=express.Router()
+const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { DrsM, Top, Bottom } = require('../models/drsM.js');
@@ -7,6 +7,23 @@ const User = require('../models/userSchema.js');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// === Middleware to extract user from token ===
+const fetchUser = (req, res, next) => {
+  const token = req.header('auth-token');
+  if (!token) {
+    return res.status(401).json({ error: 'Access Denied. No token provided.' });
+  }
+
+  try {
+    const data = jwt.verify(token, JWT_SECRET);
+    req.user = data; // data should be { id: user._id }
+    next();
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid Token' });
+  }
+};
+
+// === Create User ===
 router.post('/createuser', async (req, res) => {
   console.log("Incoming body:", req.body);
   const { name, email, phone, password } = req.body;
@@ -38,9 +55,13 @@ router.post('/createuser', async (req, res) => {
   }
 });
 
-router.post('/dress', async (req, res) => {
+// === Add Dress Measurement (requires auth) ===
+router.post('/dress', fetchUser, async (req, res) => {
   try {
-    const measurement = new DrsM(req.body);
+    const measurement = new DrsM({
+      ...req.body,
+      user: req.user.id // ✅ Add user from token
+    });
     await measurement.save();
     res.status(201).json({ message: 'Measurement saved successfully!' });
   } catch (error) {
@@ -57,7 +78,6 @@ router.get('/dress', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 });
-
 
 router.post('/tx', async (req, res) => {
   try {
@@ -79,21 +99,22 @@ router.get('/tx', async (req, res) => {
   }
 });
 
-router.post('/btx', async (req,res) =>{
+router.post('/btx', async (req, res) => {
   try {
-    const measurement = new Bottom (req.body);
+    const measurement = new Bottom(req.body);
     await measurement.save();
-    res.status(201).json({message: 'Bottom measurement saved successfully! '})
+    res.status(201).json({ message: 'Bottom measurement saved successfully!' });
   } catch (error) {
-    console.error(error)
-    res.status(500).json({error: 'Failed to save bottom measurement'})
+    console.error(error);
+    res.status(500).json({ error: 'Failed to save bottom measurement' });
   }
-})
+});
 
 router.get('/btx', async (req, res) => {
   try {
     const data = await Bottom.find();
     res.status(200).json(data);
+    
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch bottoms data' });
   }
