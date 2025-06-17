@@ -12,7 +12,8 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 const allowedOrigins = [
   'https://yashrxx.github.io',   // for tat-main (production input UI)
-  'http://localhost:3000'        // for tat-server (local testing)
+  'http://localhost:3000',
+  'http://localhost:3001'        // for tat-server (local testing)
 ];
 
 app.use(cors({
