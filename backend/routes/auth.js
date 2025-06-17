@@ -34,6 +34,15 @@ router.post('/tx', async (req, res) => {
   }
 });
 
+router.get('/tx', async (req, res) => {
+  try {
+    const data = await DrsM.find();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch tops data' });
+  }
+});
+
 router.post('/btx', async (req,res) =>{
   try {
     const measurement = new Bottom (req.body);
@@ -44,4 +53,14 @@ router.post('/btx', async (req,res) =>{
     res.status(500).json({error: 'Failed to save bottom measurement'})
   }
 })
+
+router.get('/btx', async (req, res) => {
+  try {
+    const data = await DrsM.find();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch bottoms data' });
+  }
+});
+
 module.exports = router;
