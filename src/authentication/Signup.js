@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 const Signup = (props) => {
     const navigate = useNavigate();
-    const [Credentials, setCredentials] = useState({ name: '', email: '', password: '', cpassword: '' });
+    const [Credentials, setCredentials] = useState({ name: '', email: '', phone:'', password: '', cpassword: '' });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const { name, email, password, cpassword } = Credentials;
+        const { name, email, phone, password, cpassword } = Credentials;
 
         // UPDATED: Check if passwords match before making an API request
         if (password !== cpassword) {
@@ -24,7 +24,7 @@ const Signup = (props) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, email, password })
+                body: JSON.stringify({ name, email, phone, password })
             });
 
             const text = await response.text(); // Read raw response first
