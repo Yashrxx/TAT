@@ -36,7 +36,7 @@ router.post('/tx', async (req, res) => {
 
 router.get('/tx', async (req, res) => {
   try {
-    const data = await DrsM.find();
+    const data = await Top.find();
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch tops data' });
@@ -56,7 +56,7 @@ router.post('/btx', async (req,res) =>{
 
 router.get('/btx', async (req, res) => {
   try {
-    const data = await DrsM.find();
+    const data = await Bottom.find();
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch bottoms data' });
