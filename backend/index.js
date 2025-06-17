@@ -10,12 +10,22 @@ const port = process.env.PORT || 5000;
 
 // Middlewares
 app.use(express.json());
+const allowedOrigins = [
+  'https://yashrxx.github.io',   // for tat-main (production input UI)
+  'http://localhost:3000'        // for tat-server (local testing)
+];
+
 app.use(cors({
-  origin: 'https://yashrxx.github.io',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS Not Allowed'));
+    }
+  },
+  credentials: true
 }));
+
 
 // Health Check
 app.get("/", (req, res) => {
