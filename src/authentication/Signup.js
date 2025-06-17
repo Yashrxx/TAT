@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 const Signup = (props) => {
     const navigate = useNavigate();
-    const [Credentials, setCredentials] = useState({ name: '', email: '', phone:'', password: '', cpassword: '' });
+    const [Credentials, setCredentials] = useState({ name: '', email: '', phone: '', password: '', cpassword: '' });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const { name, email, phone, password, cpassword } = Credentials;
 
         // UPDATED: Check if passwords match before making an API request
@@ -18,13 +18,19 @@ const Signup = (props) => {
             return;
         }
 
+        const trimmedData = {
+            name: name.trim(),
+            email: email.trim(),
+            phone: phone.trim(),
+            password
+        }
         try {
-            const response = await fetch('https://tat-f2rq.onrender.com/api/auth/createuser' , {
+            const response = await fetch('https://tat-f2rq.onrender.com/api/auth/createuser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, email, phone, password })
+                body: JSON.stringify({ trimmedData })
             });
 
             const text = await response.text(); // Read raw response first
@@ -66,30 +72,30 @@ const Signup = (props) => {
     return (
         <form onSubmit={handleSubmit}>
             <Col className="container" xs={12} md={6}>
-            <h1 className='text-center'>Sign-up</h1>
-            <div className="mb-3">
-                <label htmlFor="name" className="form-label">Name</label>
-                <input required type="text" className="form-control" name='name' id="name" onChange={onChange} minLength={3} aria-describedby="name" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                <input required type="email" className="form-control" name='email' id="email" onChange={onChange} aria-describedby="email" />
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="phone" className="form-label">phoneNo</label>
-                <input type="number" className="form-control" name='phone' id="phone" onChange={onChange} length={10} required/>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="form-control" name='password' id="password" onChange={onChange} minLength={5} required/>
-                <div id="passwordHelp" className="form-text">We'll never share your password with anyone else.</div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                <input type="password" className="form-control" name='cpassword' id="cpassword" onChange={onChange} minLength={5} required/>
-            </div>
-            <button type="submit" className="btn btn-primary my-1" disabled={Credentials.password !== Credentials.cpassword}>Submit</button>
+                <h1 className='text-center'>Sign-up</h1>
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Name</label>
+                    <input required type="text" className="form-control" name='name' id="name" onChange={onChange} minLength={3} aria-describedby="name" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <input required type="email" className="form-control" name='email' id="email" onChange={onChange} aria-describedby="email" />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="phone" className="form-label">phoneNo</label>
+                    <input type="text" className="form-control" name='phone' id="phone" onChange={onChange} minLength={10} maxLength={10} required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" className="form-control" name='password' id="password" onChange={onChange} minLength={5} required />
+                    <div id="passwordHelp" className="form-text">We'll never share your password with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="cpassword" className="form-label">Confirm Password</label>
+                    <input type="password" className="form-control" name='cpassword' id="cpassword" onChange={onChange} minLength={5} required />
+                </div>
+                <button type="submit" className="btn btn-primary my-1" disabled={Credentials.password !== Credentials.cpassword}>Submit</button>
             </Col>
         </form>
     )

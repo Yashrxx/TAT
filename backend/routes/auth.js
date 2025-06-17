@@ -8,6 +8,7 @@ const User = require('../models/userSchema.js');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/createuser', async (req, res) => {
+  console.log("Incoming body:", req.body);
   const { name, email, phone, password } = req.body;
 
   try {
