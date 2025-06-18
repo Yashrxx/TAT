@@ -58,11 +58,14 @@ router.post('/createuser', async (req, res) => {
 // === Add Dress Measurement (requires auth) ===
 router.post('/dress', fetchUser, async (req, res) => {
   try {
-    const measurement = new DrsM({
-      ...req.body,
-      user: req.user.id // ✅ Add user from token
-    });
-    await measurement.save();
+    const {measurement} = req.body;
+    const entry = new DrsM({
+      ...measurement,
+      name: req.user.name,
+      email: req.user.email,
+      phone: req.user.phone
+    })
+    await entry.save();
     res.status(201).json({ message: 'Measurement saved successfully!' });
   } catch (error) {
     console.error(error);
@@ -79,14 +82,32 @@ router.get('/dress', async (req, res) => {
   }
 });
 
-router.post('/tx', async (req, res) => {
+// router.post('/tx', async (req, res) => {
+//   try {
+//     const measurement = new Top(req.body);
+//     await measurement.save();
+//     res.status(201).json({ message: 'Top measurement saved successfully!' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to save top measurement' });
+//   }
+// });
+
+router.post('/tx', fetchUser, async (req, res) => {
   try {
-    const measurement = new Top(req.body);
-    await measurement.save();
-    res.status(201).json({ message: 'Top measurement saved successfully!' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to save top measurement' });
+    const { measurements } = req.body; // your specific input fields
+
+    const entry = new Top({
+      ...measurements,
+      name: req.user.name,
+      email: req.user.email,
+      phone: req.user.phone
+    });
+
+    await entry.save();
+    res.json({ success: true, entry });
+  } catch (err) {
+    res.status(500).send("Server Error");
   }
 });
 
@@ -99,10 +120,16 @@ router.get('/tx', async (req, res) => {
   }
 });
 
-router.post('/btx', async (req, res) => {
+router.post('/btx', fetchUser ,async (req, res) => {
   try {
-    const measurement = new Bottom(req.body);
-    await measurement.save();
+    const {measurement} = req.body;
+    const entry = new Bottom({
+      ...measurement,
+      name: req.user.name,
+      email: req.user.email,
+      phone: req.user.phone
+    })
+    await entry.save();
     res.status(201).json({ message: 'Bottom measurement saved successfully!' });
   } catch (error) {
     console.error(error);

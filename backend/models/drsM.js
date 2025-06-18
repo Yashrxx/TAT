@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const drsMSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
   shoulderShoulder: { type: Number },
   shoulderApex: { type: Number },
   shoulderUnderBurst: { type: Number },
@@ -19,6 +22,9 @@ const drsMSchema = new mongoose.Schema({
 });
 
 const topSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
   shoulderShoulder: { type: Number },
   shoulderApex: { type: Number },
   shoulderUnderBurst: { type: Number },
@@ -35,6 +41,9 @@ const topSchema = new mongoose.Schema({
 });
 
 const bottomSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
   fullLength: { type: Number},
   hipLength: { type: Number },
   hipRound: { type: Number },
