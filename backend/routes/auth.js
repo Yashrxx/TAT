@@ -16,7 +16,7 @@ const fetchUser = (req, res, next) => {
 
   try {
     const data = jwt.verify(token, JWT_SECRET);
-    req.user = data;
+    req.user = data.id;
     next();
   } catch (error) {
     res.status(401).json({ error: 'Invalid Token' });
