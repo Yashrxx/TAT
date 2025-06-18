@@ -31,6 +31,7 @@ const Top = (props) => {
     };
 
     const [loading, setLoading] = useState(false);
+    const token = localStorage.getItem('token');
 
     const handlesubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +40,8 @@ const Top = (props) => {
             const response = await fetch("https://tat-f2rq.onrender.com/api/auth/tx", {
                 method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'auth-token': token,
                 },
                 body: JSON.stringify(measurementData)
             });
