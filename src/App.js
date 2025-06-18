@@ -9,10 +9,22 @@ import About from './components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import Signup from './authentication/Signup'
-
+import Login from './authentication/Login'
+import ProtectedRoute from './authentication/ProtectedRoute';
+import Dashboard from './dataValues/Dashboard';
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+
+  useEffect(() => {
+    const checkAuth = () => setIsAuthenticated(!!localStorage.getItem("token"));
+    window.addEventListener("storage", checkAuth);
+    return () => window.removeEventListener("storage", checkAuth);
+  }, []);
+
   const [mode, setmode] = useState('light');
   const [btnText, setbtnTxt] = useState('Enable Dark Mode')
   const removebodycls = () => {
@@ -41,13 +53,17 @@ function App() {
     <BrowserRouter basename='/TAT'>
       <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} />
       <Routes>
+        <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />
+        <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />
+        <Route path='/dashboard' element={<Dashboard mode={mode}/>} />
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
         <Route path='/' element={<Home />} />
         <Route path='/measurements' element={<Measurements mode={mode}/>} />
         <Route path='/top' element={<Top mode={mode}/>} />
         <Route path='/fulldress' element={<FullDress mode={mode} />} />
         <Route path='/bottom' element={<Bottom mode={mode}/>} />
         <Route path='/about' element={<About mode={mode}/>} />
-        <Route path='/signup' element={<Signup mode={mode}/>} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

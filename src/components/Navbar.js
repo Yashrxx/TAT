@@ -1,9 +1,19 @@
-import './Navbar.css'
-import { Link } from 'react-router-dom'
-import TAT from '../assets/img/TAT_Logo.jpeg'
+import './Navbar.css';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import TAT from '../assets/img/TAT_Logo.jpeg';
 import PropTypes from 'prop-types';
 
 const Navbar = (props) => {
+    const navigate = useNavigate();
+    const isLoggedIn = !!localStorage.getItem('token');
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        navigate("/login")
+    }
+    let location = useLocation();
+    useEffect(() => {
+    }, [location])
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
             <div className="container-fluid">
@@ -20,24 +30,37 @@ const Navbar = (props) => {
                             <Link className="nav-link" to="/measurements" >Measurements</Link>
                         </li>
 
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/fulldress" >FullDress</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/top" >Top</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/bottom" >Bottom</Link>
-                        </li>
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/fulldress">FullDress</Link>
+                            </li>
+                        )}
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/top">Top</Link>
+                            </li>
+                        )}
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/bottom">Bottom</Link>
+                            </li>
+                        )}
                         <li className="nav-item">
                             <Link className="nav-link" aria-disabled="true" to="/about" >AboutUs</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" aria-disabled="true" to="/dashboard" >Dashboard</Link>
+                        </li>
                     </ul>
-                        <div className={`form-check form-switch text-${props.mode === 'light' ? 'black' : 'light'}`}>
-                            <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
-                            <label className="form-check-label" onClick={props.toggleMode} htmlFor="flexSwitchCheckDefault" >{props.btnText}</label>
-                        </div>
-                        <Link to='/signup'>Signup</Link>
+                    <div className={`form-check form-switch text-${props.mode === 'light' ? 'black' : 'light'}`}>
+                        <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
+                        <label className="form-check-label" onClick={props.toggleMode} htmlFor="flexSwitchCheckDefault" >{props.btnText}</label>
+                    </div>
+                    {!localStorage.getItem('token') ? <form className="d-flex">
+                        <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
+                        <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
+                    </form>
+                        : <Link onClick={handleLogout} className='btn btn-primary' to='/login' role='button'>Logout</Link>}
                 </div>
             </div>
         </nav>

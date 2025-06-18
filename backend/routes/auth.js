@@ -52,13 +52,43 @@ router.post('/createuser', async (req, res) => {
     });
 
     const data = { id: user._id };
-    const authToken = jwt.sign(data, JWT_SECRET);
+    const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ success: true, authToken });
 
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ success: false, error: "Invalid Credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ success: false, error: "Invalid Credentials" });
+    }
+
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    const authToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
+
+    res.json({ success: true, authToken });
+
+  } catch (err) {
+    console.error("Login Error:", err.message);
+    res.status(500).send("Server Error");
   }
 });
 
