@@ -24,7 +24,7 @@ const Login = ({ setIsAuthenticated }) => {
             if (json.success === true) {
                 setIsAuthenticated(true);
                 localStorage.setItem('token', json.authToken);
-                navigate('/urbanBasket');
+                navigate('/');
             } else {
                 console.warn("Invalid Credentials");
             }
