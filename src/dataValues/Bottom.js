@@ -18,7 +18,8 @@ const Bottom = (props) => {
     };
 
     const [loading, setLoading] = useState(false);
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('auth-token');
+
     const handlesubmit = async (e) => {
         e.preventDefault();
         setLoading(true); // Show loader
