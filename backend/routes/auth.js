@@ -16,7 +16,7 @@ const fetchUser = (req, res, next) => {
 
   try {
     const data = jwt.verify(token, JWT_SECRET);
-    req.user = data; // data should be { id: user._id }
+    req.user = user; // data should be { id: user._id }
     next();
   } catch (error) {
     res.status(401).json({ error: 'Invalid Token' });
@@ -41,7 +41,7 @@ router.post('/createuser', async (req, res) => {
       name,
       email,
       phone,
-      password: secPass
+      password: secPass,
     });
 
     const data = { id: user._id };
@@ -58,9 +58,9 @@ router.post('/createuser', async (req, res) => {
 // === Add Dress Measurement (requires auth) ===
 router.post('/dress', fetchUser, async (req, res) => {
   try {
-    const {measurement} = req.body;
+    
     const entry = new DrsM({
-      ...measurement,
+      ...req.body,
       name: req.user.name,
       email: req.user.email,
       phone: req.user.phone
@@ -95,10 +95,9 @@ router.get('/dress', async (req, res) => {
 
 router.post('/tx', fetchUser, async (req, res) => {
   try {
-    const { measurements } = req.body; // your specific input fields
 
     const entry = new Top({
-      ...measurements,
+      ...req.body,
       name: req.user.name,
       email: req.user.email,
       phone: req.user.phone
@@ -122,9 +121,8 @@ router.get('/tx', async (req, res) => {
 
 router.post('/btx', fetchUser ,async (req, res) => {
   try {
-    const {measurement} = req.body;
     const entry = new Bottom({
-      ...measurement,
+      ...req.body,
       name: req.user.name,
       email: req.user.email,
       phone: req.user.phone
