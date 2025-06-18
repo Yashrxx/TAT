@@ -11,21 +11,18 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const fetchUser = async (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
-    return res.status(401).json({ error: 'Access Denied. No token provided.' });
+    return res.status(401).json({ error: 'Access Denied: No Token' });
   }
 
   try {
-    const data = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const user = await User.findById(decoded.user.id).select('-password');
+    if (!user) return res.status(404).json({ error: 'User not found' });
 
-    // Fetch the full user object from the DB using the ID
-    const user = await User.findById(data.id).select("-password"); // Exclude password
-    if (!user) {
-      return res.status(401).json({ error: 'User not found' });
-    }
-
-    req.user = user;  // Attach full user object to the request
+    req.user = user; // Attach full user object to request
     next();
   } catch (error) {
+    console.error(error);
     res.status(401).json({ error: 'Invalid Token' });
   }
 };
