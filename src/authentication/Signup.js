@@ -25,7 +25,7 @@ const Signup = (props) => {
             password
         }
         try {
-            const response = await fetch('https://tat-f2rq.onrender.com/api/createuser', {
+            const response = await fetch('https://tat-f2rq.onrender.com/api/auth/createuser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
