@@ -95,7 +95,10 @@ router.post('/login', async (req, res) => {
 // === Add Dress Measurement (requires auth) ===
 router.post('/dress', fetchUser, async (req, res) => {
   try {
-    
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
     const entry = new DrsM({
       ...req.body,
       name: req.user.name,
