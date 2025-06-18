@@ -48,6 +48,7 @@ const Signup = (props) => {
 
             if (json.success === true) {
                 localStorage.setItem('token', json.authToken);
+                console.log("Token from localStorage:", localStorage.getItem('token'));
                 navigate('/');
 
                 // UPDATED: Ensure `props.showalert` exists before calling

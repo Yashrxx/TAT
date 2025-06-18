@@ -8,7 +8,7 @@ const User = require('../models/userSchema.js');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // === Middleware to extract user from token ===
-const fetchUser = (req, res, next) => {
+const fetchUser = async (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
     return res.status(401).json({ error: 'Access Denied. No token provided.' });
@@ -16,7 +16,14 @@ const fetchUser = (req, res, next) => {
 
   try {
     const data = jwt.verify(token, JWT_SECRET);
-    req.user = data.id;
+
+    // Fetch the full user object from the DB using the ID
+    const user = await User.findById(data.id).select("-password"); // Exclude password
+    if (!user) {
+      return res.status(401).json({ error: 'User not found' });
+    }
+
+    req.user = user;  // Attach full user object to the request
     next();
   } catch (error) {
     res.status(401).json({ error: 'Invalid Token' });
