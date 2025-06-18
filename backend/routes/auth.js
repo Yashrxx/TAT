@@ -101,9 +101,9 @@ router.post('/dress', fetchUser, async (req, res) => {
     }
     const entry = new DrsM({
       ...req.body,
-      name: req.user.name,
-      email: req.user.email,
-      phone: req.user.phone
+      name: user.name,
+      email: user.email,
+      phone: user.phone
     })
     await entry.save();
     res.status(201).json({ message: 'Measurement saved successfully!' });
@@ -135,12 +135,15 @@ router.get('/dress', async (req, res) => {
 
 router.post('/tx', fetchUser, async (req, res) => {
   try {
-
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
     const entry = new Top({
       ...req.body,
-      name: req.user.name,
-      email: req.user.email,
-      phone: req.user.phone
+      name: user.name,
+      email: user.email,
+      phone: user.phone
     });
 
     await entry.save();
@@ -160,12 +163,16 @@ router.get('/tx', async (req, res) => {
 });
 
 router.post('/btx', fetchUser ,async (req, res) => {
+  const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
   try {
     const entry = new Bottom({
       ...req.body,
-      name: req.user.name,
-      email: req.user.email,
-      phone: req.user.phone
+      name: user.name,
+      email: user.email,
+      phone: user.phone
     })
     await entry.save();
     res.status(201).json({ message: 'Bottom measurement saved successfully!' });
