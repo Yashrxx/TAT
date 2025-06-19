@@ -1,8 +1,8 @@
 import './Card.css'
 
-function Card({ data }) {
+function Card({ data , style }) {
     return (
-        <div className="bhai">
+        <div className="bhai" style={style}>
             <ul>
                 {Object.entries(data).map(([key, value]) => {
                     // Skip internal Mongo fields

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Card from '../components/Card'
 import './Dashboard.css'
 
-function Dashboard() {
+function Dashboard(props) {
 
     const [dressEntries, setdressEntries] = useState([]);
     const [topEntries, setTopEntries] = useState([]);
@@ -40,28 +40,40 @@ function Dashboard() {
     return (
         <div>
             {!isLoaded ? (
-                <h1 className="loader">Loading...</h1>
+                <h1 style={{ color: props.mode === 'dark' ? 'white' : 'black' }} className="loader">Loading...</h1>
             ) : (
                 <div className="dash">
-                    <h2>Fulldress Entries</h2>
+                    <h2 style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Fulldress Entries</h2>
                     <div className="card-grid">
-                        {dressEntries.map((entry, idx) => (
-                            <Card key={idx} data={entry} />
-                        ))}
+                        {dressEntries.length > 0 ? (
+                        dressEntries.map((entry, idx) => (
+                            <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} key={idx} data={entry} />
+                        ))
+                    ) : (
+                        <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} data={{ message: "No entries found for Full Dress." }} />
+                    )}
                     </div>
 
-                    <h2>Bottom Wear (BTX)</h2>
+                    <h2 style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Bottom Wear (BTX)</h2>
                     <div className="card-grid">
-                        {bottomEntries.map((entry, idx) => (
-                            <Card key={idx + 'b'} data={entry} />
-                        ))}
+                        {bottomEntries.length > 0 ? (
+                        bottomEntries.map((entry, idx) => (
+                            <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} key={idx + 'b'} data={entry} />
+                        ))
+                    ) : (
+                        <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} data={{ message: "No entries found for Bottom Wear." }} />
+                    )}
                     </div>
 
-                    <h2>Top Wear (TX)</h2>
+                    <h2 style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Top Wear (TX)</h2>
                     <div className="card-grid">
-                        {topEntries.map((entry, idx) => (
-                            <Card key={idx + 't'} data={entry} />
-                        ))}
+                        {topEntries.length > 0 ? (
+                        topEntries.map((entry, idx) => (
+                            <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} key={idx + 't'} data={entry} />
+                        ))
+                    ) : (
+                        <Card style={{ backgroundColor: props.mode === 'dark' ? '#141414' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} data={{ message: "No entries found for Top Wear." }} />
+                    )}
                     </div>
                 </div>
             )}

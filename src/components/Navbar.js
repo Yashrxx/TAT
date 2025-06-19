@@ -26,9 +26,11 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/" >Home</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/measurements" >Measurements</Link>
-                        </li>
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/measurements">Measurement</Link>
+                            </li>
+                        )}
 
                         {isLoggedIn && (
                             <li className="nav-item">
@@ -45,14 +47,13 @@ const Navbar = (props) => {
                                 <Link className="nav-link" to="/bottom">Bottom</Link>
                             </li>
                         )}
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                            </li>
+                        )}
                         <li className="nav-item">
                             <Link className="nav-link" aria-disabled="true" to="/about" >AboutUs</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" aria-disabled="true" to="/dashboard" >Dashboard</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" aria-disabled="true" to="/admin" >Admin</Link>
                         </li>
                     </ul>
                     <div className={`form-check form-switch text-${props.mode === 'light' ? 'black' : 'light'}`}>
@@ -63,7 +64,7 @@ const Navbar = (props) => {
                         <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
                         <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
                     </form>
-                        : <Link onClick={handleLogout} className='btn btn-primary' to='/login' role='button'>Logout</Link>}
+                        : <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>}
                 </div>
             </div>
         </nav>
