@@ -100,7 +100,8 @@ router.post('/dress', fetchUser, async (req, res) => {
       ...req.body,
       name: user.name,
       email: user.email,
-      phone: user.phone
+      phone: user.phone,
+      user: user._id
     })
     await entry.save();
     res.status(201).json({ message: 'Measurement saved successfully!' });
@@ -164,7 +165,8 @@ router.post('/tx', fetchUser, async (req, res) => {
       ...req.body,
       name: user.name,
       email: user.email,
-      phone: user.phone
+      phone: user.phone,
+      user: user._id
     });
 
     await entry.save();
@@ -193,7 +195,8 @@ router.post('/btx', fetchUser ,async (req, res) => {
       ...req.body,
       name: user.name,
       email: user.email,
-      phone: user.phone
+      phone: user.phone,
+      user: user._id
     })
     await entry.save();
     res.status(201).json({ message: 'Bottom measurement saved successfully!' });
