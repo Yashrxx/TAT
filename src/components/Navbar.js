@@ -1,6 +1,6 @@
 import './Navbar.css';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import React, { useEffect , useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TAT from '../assets/img/TAT_Logo.jpeg';
 import PropTypes from 'prop-types';
 
@@ -33,6 +33,7 @@ const Navbar = (props) => {
 
                 const data = await res.json();
                 setUsername(data.name);
+                console.log(data.name)
             } catch (error) {
                 console.error('Failed to fetch user:', error);
             }
@@ -87,16 +88,17 @@ const Navbar = (props) => {
                         <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
                         <label className="form-check-label" onClick={props.toggleMode} htmlFor="flexSwitchCheckDefault" >{props.btnText}</label>
                     </div>
-                    {username && (
-                        <div className="bg-white text-[#141414] px-4 py-1 rounded-xl shadow-md text-sm font-semibold">
-                            {username}
-                        </div>
-                    )}
                     {!localStorage.getItem('token') ? <form className="d-flex">
                         <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
                         <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
                     </form>
-                        : <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>}
+                        : 
+                        <>
+                    <div className="bg-white text-[#141414] px-4 py-1 rounded-xl shadow-md text-sm font-semibold">
+                        {username}
+                    </div>
+                    <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>
+                    </>}
                 </div>
             </div>
         </nav>
