@@ -4,7 +4,7 @@ import Shirt from '../assets/img/shirt.jpeg'
 import Pant from '../assets/img/pant.jpeg'
 import Dress from '../assets/img/dress.jpeg'
 import { Link ,useNavigate } from 'react-router-dom'
-const Measurements = () => {
+const Measurements = (props) => {
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {
@@ -13,15 +13,15 @@ const Measurements = () => {
   return (
     <div className='box'>
         <div className='box-1'>
-            <img src={Shirt} alt="Error 404" style={{ cursor: 'pointer' }} onClick={()=>{handleNavigate('/top')}}/>
+            <img style={{ border: props.mode === 'light' ? '2px solid #141414' : '2px solid white',cursor: 'pointer'}} src={Shirt} alt="Error 404" onClick={()=>{handleNavigate('/top')}}/>
             <Link to="/top" className="btx">Top</Link>
         </div>
         <div className='box-2'>
-            <img src={Pant} alt="Error 404" style={{ cursor: 'pointer' }} onClick={()=>{handleNavigate('/bottom')}}/>
+            <img src={Pant} alt="Error 404" style={{ border: props.mode === 'light' ? '2px solid #141414' : '2px solid white',cursor: 'pointer'}} onClick={()=>{handleNavigate('/bottom')}}/>
             <Link to="/bottom" className="btx">Bottom</Link>
         </div>
         <div className='box-3'>
-            <img src={Dress} alt="Error 404" style={{ cursor: 'pointer' }} onClick={()=>{handleNavigate('/fulldress')}}/>
+            <img src={Dress} alt="Error 404" style={{ border: props.mode === 'light' ? '2px solid #141414' : '2px solid white',cursor: 'pointer'}} onClick={()=>{handleNavigate('/fulldress')}}/>
             <Link to="/fulldress" className="btx">Dress</Link>
         </div>
 

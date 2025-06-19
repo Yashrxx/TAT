@@ -59,6 +59,15 @@ router.post('/createuser', async (req, res) => {
   }
 });
 
+router.post('/getuser', fetchUser, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("name email");
+    res.json(user);
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 

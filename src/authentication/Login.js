@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Form , Container, Row, Col } from 'react-bootstrap';
+import { Form, Container, Row, Col } from 'react-bootstrap';
 import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = (props) => {
+    const { setIsAuthenticated } = props
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -48,7 +49,7 @@ const Login = ({ setIsAuthenticated }) => {
 
     return (
         <Fragment>
-            <div id="login">
+            <div id="login" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <div className="container-x">
                     <section>
                         <Container>
@@ -74,9 +75,11 @@ const Login = ({ setIsAuthenticated }) => {
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />
                                         </Form.Group>
-                                        <button type="submit" className="btn btn-primary" disabled={loading}>
-                                            {loading ? "Submitting..." : "Submit"}
-                                        </button>
+                                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                            <button type="submit" className="btn btn-primary" disabled={loading}>
+                                                {loading ? "Submitting..." : "Submit"}
+                                            </button>
+                                        </div>
                                     </Form>
                                 </Col>
                             </Row>
