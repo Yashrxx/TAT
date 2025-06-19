@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const drsMSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  name: String,
+  email: String,
+  phone: String,
   shoulderShoulder: { type: Number },
   shoulderApex: { type: Number },
   shoulderUnderBurst: { type: Number },
@@ -15,12 +17,15 @@ const drsMSchema = new mongoose.Schema({
   neckDeepFront: { type: Number },
   neckDeepBack: { type: Number },
   shoulderNavel: { type: Number },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
   createdAt: { type: Date, default: Date.now }
 });
 
 const topSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  name: String,
+  email: String,
+  phone: String,
   shoulderShoulder: { type: Number },
   shoulderApex: { type: Number },
   shoulderUnderBurst: { type: Number },
@@ -32,12 +37,12 @@ const topSchema = new mongoose.Schema({
   neckDeepFront: { type: Number },
   neckDeepBack: { type: Number },
   shoulderNavel: { type: Number },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
   createdAt: { type: Date, default: Date.now }
 });
 
 const bottomSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   name: String,
   email: String,
   phone: String,
@@ -45,6 +50,7 @@ const bottomSchema = new mongoose.Schema({
   hipLength: { type: Number },
   hipRound: { type: Number },
   bottomRound: { type: Number},
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
   createdAt: { type: Date, default: Date.now }
 });

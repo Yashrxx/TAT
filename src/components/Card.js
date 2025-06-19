@@ -3,7 +3,7 @@ import './Card.css'
 function Card({ data }) {
 
     return (
-        <div className="container">
+        <div className="bhai">
             <ul>
                 {Object.entries(data).map(([key, value]) => {
                     // Skip internal Mongo fields

@@ -1,4 +1,4 @@
-.container {
+.bhai {
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -11,20 +11,20 @@
 }
 
 /* Card hover animation */
-.container:hover {
+.bhai:hover {
   transform: scale(1.03);
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
   cursor: pointer;
 }
 
 /* List styling inside card */
-.container ul {
+.bhai ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.container li {
+.bhai li {
   padding: 6px 0;
   font-size: 15px;
   color: #333;
