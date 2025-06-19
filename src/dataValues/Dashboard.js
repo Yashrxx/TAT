@@ -25,6 +25,9 @@ function Dashboard() {
                 setTopEntries(topreq.data);
                 setbottomEntries(btmreq.data);
                 setIsLoaded(true);
+                console.log("Dress data", dressreq.data);
+                console.log("Top data", topreq.data);
+                console.log("Bottom data", btmreq.data);
             } catch (err) {
                 console.error(err);
             }
@@ -34,33 +37,33 @@ function Dashboard() {
 
     return (
         <div>
-      {!isLoaded ? (
-        <div className="loader">Loading...</div>
-      ) : (
-        <>
-          <h2>Fulldress Entries</h2>
-          <div className="card-grid">
-            {dressEntries.map((entry, idx) => (
-              <Card key={idx} data={entry} />
-            ))}
-          </div>
+            {!isLoaded ? (
+                <div className="loader">Loading...</div>
+            ) : (
+                <>
+                    <h2>Fulldress Entries</h2>
+                    <div className="card-grid">
+                        {dressEntries.map((entry, idx) => (
+                            <Card key={idx} data={entry} />
+                        ))}
+                    </div>
 
-          <h2>Bottom Wear (BTX)</h2>
-          <div className="card-grid">
-            {bottomEntries.map((entry, idx) => (
-              <Card key={idx + 'b'} data={entry} />
-            ))}
-          </div>
+                    <h2>Bottom Wear (BTX)</h2>
+                    <div className="card-grid">
+                        {bottomEntries.map((entry, idx) => (
+                            <Card key={idx + 'b'} data={entry} />
+                        ))}
+                    </div>
 
-          <h2>Top Wear (TX)</h2>
-          <div className="card-grid">
-            {topEntries.map((entry, idx) => (
-              <Card key={idx + 't'} data={entry} />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+                    <h2>Top Wear (TX)</h2>
+                    <div className="card-grid">
+                        {topEntries.map((entry, idx) => (
+                            <Card key={idx + 't'} data={entry} />
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
     )
 }
 

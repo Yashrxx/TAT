@@ -19,7 +19,7 @@ const fetchUser = async (req, res, next) => {
     const user = await User.findById(decoded.user.id).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    req.user = user; // Attach full user object to request
+    req.user = user;
     next();
   } catch (error) {
     console.error(error);
