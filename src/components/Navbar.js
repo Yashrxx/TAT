@@ -51,6 +51,9 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <Link className="nav-link" aria-disabled="true" to="/dashboard" >Dashboard</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" aria-disabled="true" to="/admin" >Admin</Link>
+                        </li>
                     </ul>
                     <div className={`form-check form-switch text-${props.mode === 'light' ? 'black' : 'light'}`}>
                         <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
