@@ -110,14 +110,38 @@ router.post('/dress', fetchUser, async (req, res) => {
   }
 });
 
-router.get('/dress', async (req, res) => {
+router.get('/dress', fetchUser, async (req, res) => {
   try {
-    const data = await DrsM.find();
+    const data = await DrsM.find({ user: req.user.id });
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch data' });
+    res.status(500).json({ error: 'Failed to fetch user-specific data' });
   }
 });
+
+router.get('/admin/data', fetchUser, async (req, res) => {
+  if (req.user.email !== 'aditisushillunkad30@gmail.com') {
+    return res.status(403).json({ error: 'Access denied' });
+  }
+
+  try {
+    const [dressData, topData, bottomData] = await Promise.all([
+      DrsM.find().populate('user', 'name email'),
+      Top.find().populate('user', 'name email'),
+      Bottom.find().populate('user', 'name email')
+    ]);
+
+    res.status(200).json({
+      dress: dressData,
+      top: topData,
+      bottom: bottomData
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch all user data' });
+  }
+});
+
 
 // router.post('/tx', async (req, res) => {
 //   try {
@@ -152,7 +176,7 @@ router.post('/tx', fetchUser, async (req, res) => {
 
 router.get('/tx', async (req, res) => {
   try {
-    const data = await Top.find();
+    const data = await Top.find({ user: req.user.id });
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch tops data' });
@@ -181,7 +205,7 @@ router.post('/btx', fetchUser ,async (req, res) => {
 
 router.get('/btx', async (req, res) => {
   try {
-    const data = await Bottom.find();
+    const data = await Bottom.find({ user: req.user.id });
     res.status(200).json(data);
     
   } catch (err) {
