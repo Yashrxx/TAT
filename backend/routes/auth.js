@@ -174,7 +174,7 @@ router.post('/tx', fetchUser, async (req, res) => {
   }
 });
 
-router.get('/tx', async (req, res) => {
+router.get('/tx', fetchUser , async (req, res) => {
   try {
     const data = await Top.find({ user: req.user.id });
     res.status(200).json(data);
@@ -203,7 +203,7 @@ router.post('/btx', fetchUser ,async (req, res) => {
   }
 });
 
-router.get('/btx', async (req, res) => {
+router.get('/btx', fetchUser , async (req, res) => {
   try {
     const data = await Bottom.find({ user: req.user.id });
     res.status(200).json(data);
