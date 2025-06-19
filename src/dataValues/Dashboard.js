@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from 'axios';
 import Card from '../components/Card'
+import './Dashboard.css'
+
 function Dashboard() {
 
     const [dressEntries, setdressEntries] = useState([]);
@@ -38,9 +40,9 @@ function Dashboard() {
     return (
         <div>
             {!isLoaded ? (
-                <div className="loader">Loading...</div>
+                <h1 className="loader">Loading...</h1>
             ) : (
-                <>
+                <div className="dash">
                     <h2>Fulldress Entries</h2>
                     <div className="card-grid">
                         {dressEntries.map((entry, idx) => (
@@ -61,7 +63,7 @@ function Dashboard() {
                             <Card key={idx + 't'} data={entry} />
                         ))}
                     </div>
-                </>
+                </div>
             )}
         </div>
     )

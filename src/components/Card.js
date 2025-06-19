@@ -1,7 +1,6 @@
 import './Card.css'
 
 function Card({ data }) {
-
     return (
         <div className="bhai">
             <ul>
@@ -24,6 +23,25 @@ function Card({ data }) {
                         );
                     }
 
+                    // Handle 'user' object specifically
+                    if (key === 'user' && typeof value === 'object' && value !== null) {
+                        return (
+                            <li key={key}>
+                                <strong>{key}</strong>: {value.name} ({value.email})
+                            </li>
+                        );
+                    }
+
+                    // Generic object fallback (for name/email directly present as object)
+                    if (typeof value === 'object' && value !== null) {
+                        return (
+                            <li key={key}>
+                                <strong>{key}</strong>: {JSON.stringify(value)}
+                            </li>
+                        );
+                    }
+
+                    // Normal primitive fields
                     return (
                         <li key={key}>
                             <strong>{key}</strong>: {value}
@@ -32,6 +50,7 @@ function Card({ data }) {
                 })}
             </ul>
         </div>
-    )
+    );
 }
+
 export default Card;
