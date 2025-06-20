@@ -18,28 +18,10 @@ const Navbar = (props) => {
     const [username, setUsername] = useState('');
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
-
-            try {
-                const res = await fetch('https://tat-f2rq.onrender.com/api/auth/getuser', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'auth-token': token
-                    }
-                });
-
-                const data = await res.json();
-                setUsername(data.name);
-                console.log(data.name)
-            } catch (error) {
-                console.error('Failed to fetch user:', error);
-            }
-        };
-
-        fetchUser();
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
     }, []);
 
     return (
@@ -92,13 +74,13 @@ const Navbar = (props) => {
                         <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
                         <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
                     </form>
-                        : 
+                        :
                         <>
-                    <div className="bg-white text-[#141414] px-4 py-1 rounded-xl shadow-md text-sm font-semibold">
-                        {username}
-                    </div>
-                    <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>
-                    </>}
+                            <div className="bg-white text-[#141414] px-4 py-1 rounded-xl shadow-md text-sm font-semibold">
+                                {username}
+                            </div>
+                            <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>
+                        </>}
                 </div>
             </div>
         </nav>

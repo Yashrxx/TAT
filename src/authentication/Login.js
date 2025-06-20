@@ -13,39 +13,47 @@ const Login = (props) => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const response = await fetch('https://tat-f2rq.onrender.com/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+        const response = await fetch('https://tat-f2rq.onrender.com/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const json = await response.json();
+        console.log(json);
+
+        if (json.success === true) {
+            setIsAuthenticated(true);
+
+            // Store token and user data
+            localStorage.setItem('token', json.authtoken); // use json.authtoken (not authToken)
+            localStorage.setItem('username', json.user.name); // <- Save username
+            localStorage.setItem('email', json.user.email);   // Optional: save more info if needed
+
+            toast.success("Submitted!", {
+                position: "top-center",
+                hideProgressBar: true,
+                pauseOnHover: false,
+                theme: "colored"
             });
-            const json = await response.json();
-            console.log(json);
-            if (json.success === true) {
-                setIsAuthenticated(true);
-                localStorage.setItem('token', json.authToken);
-                toast.success("Submitted!", {
-                    position: "top-center",
-                    hideProgressBar: true,
-                    pauseOnHover: false,
-                    theme: "colored"
-                });
-                navigate('/');
-            } else {
-                console.warn("Invalid Credentials");
-                toast.error("Invalid Credentials . Please try again.");
-            }
-        } catch (error) {
-            console.error("Login failed:", error);
+
+            navigate('/');
+        } else {
+            console.warn("Invalid Credentials");
+            toast.error("Invalid Credentials. Please try again.");
         }
-        finally {
-            setLoading(false); // Hide loader
-        }
-    };
+    } catch (error) {
+        console.error("Login failed:", error);
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
         <Fragment>

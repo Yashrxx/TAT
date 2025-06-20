@@ -59,42 +59,40 @@ router.post('/createuser', async (req, res) => {
   }
 });
 
-router.post('/getuser', fetchUser, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("name email");
-    res.json(user);
-  } catch (error) {
-    res.status(500).send("Internal Server Error");
-  }
-});
+// router.post('/getuser', fetchUser, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id).select("name email");
+//     res.json(user);
+//   } catch (error) {
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ success: false, error: "Invalid Credentials" });
-    }
+    if (!user) return res.status(400).json({ success: false, error: 'Invalid credentials' });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ success: false, error: "Invalid Credentials" });
-    }
+    const passwordCompare = await bcrypt.compare(password, user.password);
+    if (!passwordCompare) return res.status(400).json({ success: false, error: 'Invalid credentials' });
 
-    const payload = {
+    const payload = { user: { id: user.id } };
+    const authtoken = jwt.sign(payload, JWT_SECRET);
+
+    res.json({
+      success: true,
+      authtoken,
       user: {
-        id: user.id
+        name: user.name,
+        email: user.email,
+        phone: user.phone
       }
-    };
-
-    const authToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
-
-    res.json({ success: true, authToken });
-
-  } catch (err) {
-    console.error("Login Error:", err.message);
-    res.status(500).send("Server Error");
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
   }
 });
 
