@@ -1,28 +1,25 @@
 import './Navbar.css';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import TAT from '../assets/img/TAT_Logo.jpeg';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { UserContext } from '../context/userContext';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navbar = (props) => {
     const navigate = useNavigate();
-    const isLoggedIn = !!localStorage.getItem('token');
+    const { setUsername, setIsAuthenticated } = useContext(UserContext);
+    const { username, isAuthenticated } = useContext(UserContext);
     const handleLogout = () => {
         localStorage.removeItem("token")
+        setUsername('');
+        setIsAuthenticated(false);
         navigate("/login")
     }
     let location = useLocation();
     useEffect(() => {
     }, [location])
-
-    const [username, setUsername] = useState('');
-
-    useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
-        if (storedUsername) {
-            setUsername(storedUsername);
-        }
-    }, []);
 
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -36,28 +33,28 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/" >Home</Link>
                         </li>
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/measurements">Measurement</Link>
                             </li>
                         )}
 
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/fulldress">FullDress</Link>
                             </li>
                         )}
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/top">Top</Link>
                             </li>
                         )}
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/bottom">Bottom</Link>
                             </li>
                         )}
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/dashboard">Dashboard</Link>
                             </li>
@@ -66,21 +63,36 @@ const Navbar = (props) => {
                             <Link className="nav-link" aria-disabled="true" to="/about" >AboutUs</Link>
                         </li>
                     </ul>
-                    <div className={`form-check form-switch text-${props.mode === 'light' ? 'black' : 'light'}`}>
-                        <input className="form-check-input" type="checkbox" role="switch" onClick={() => { props.toggleMode('null') }} id="flexSwitchCheckDefault" />
-                        <label className="form-check-label" onClick={props.toggleMode} htmlFor="flexSwitchCheckDefault" >{props.btnText}</label>
-                    </div>
-                    {!localStorage.getItem('token') ? <form className="d-flex">
-                        <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
-                        <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
-                    </form>
-                        :
-                        <>
-                            <div className="bg-white text-[#141414] px-4 py-1 rounded-xl shadow-md text-sm font-semibold">
-                                {username}
-                            </div>
-                            <Link onClick={handleLogout} className='btn btn-primary mx-3' to='/login' role='button'>Logout</Link>
-                        </>}
+                    {isAuthenticated ? (
+                        <div className="dropdown">
+                            <button style={{ backgroundColor: props.mode === 'dark' ? 'silver' : 'white' }} className="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                User : {username}
+                            </button>
+                            <ul style={{ backgroundColor: props.mode === 'dark' ? 'silver' : 'white' }} className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li className="dropdown-item" onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                                    <div className="form-check form-switch">
+                                        <input className="form-check-input" type="checkbox" role="switch" id="themeSwitch" onClick={() => props.toggleMode('null')} />
+                                        <label style={{ color: props.mode === 'dark' ? 'black' : 'black' }} className="form-check-label" htmlFor="themeSwitch">{props.btnText}</label>
+                                    </div>
+                                </li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li>
+                                    <button onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'} className="dropdown-item text-danger d-flex justify-content-between align-items-center" onClick={handleLogout}>
+                                        Logout
+                                        <LogoutIcon style={{ width: '15px', height: '15px' }} />
+                                    </button >
+                                </li>
+                            </ul>
+                        </div>
+                    ) : (
+                        <form className="d-flex">
+                            <Link className='btn btn-primary mx-3' to='/login' role='button'>Login</Link>
+                            <Link className='btn btn-primary' to='/signup' role='button'>Sign up</Link>
+                        </form>
+                    )}
+
                 </div>
             </div>
         </nav>

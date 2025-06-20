@@ -6,7 +6,7 @@ function Card({ data , style }) {
             <ul>
                 {Object.entries(data).map(([key, value]) => {
                     // Skip internal Mongo fields
-                    if (key === '_id' || key === '__v') return null;
+                    if (key === '_id' || key === '__v' || key==='user') return null;
 
                     // Format createdAt field
                     if (key === 'createdAt') {
@@ -19,15 +19,6 @@ function Card({ data , style }) {
                         return (
                             <li key={key}>
                                 <strong>{key}</strong>: {formattedDate}
-                            </li>
-                        );
-                    }
-
-                    // Handle 'user' object specifically
-                    if (key === 'user' && typeof value === 'object' && value !== null) {
-                        return (
-                            <li key={key}>
-                                <strong>{key}</strong>: {value.name} ({value.email})
                             </li>
                         );
                     }

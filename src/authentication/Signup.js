@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useContext , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from '../context/userContext';
 
 const Signup = (props) => {
+    const { setUsername, setIsAuthenticated } = useContext(UserContext);
     const navigate = useNavigate();
     const [Credentials, setCredentials] = useState({ name: '', email: '', phone: '', password: '', cpassword: '' });
     const [loading, setLoading] = useState(false);
@@ -51,6 +53,8 @@ const Signup = (props) => {
 
             if (json.success === true) {
                 localStorage.setItem('token', json.authToken);
+                setIsAuthenticated(true);
+                setUsername(json.user.name);
                 console.log("Token from localStorage:", localStorage.getItem('token'));
                 toast.success("Submitted!", {
                     position: "top-center",
@@ -60,7 +64,7 @@ const Signup = (props) => {
                 });
                 navigate('/');
             }
-            else{
+            else {
                 toast.error("Signup Failed !! User already exists.");
             }
         } catch (error) {

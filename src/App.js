@@ -49,9 +49,15 @@ function App() {
       document.body.style.backgroundColor = 'white';
     }
   };
+  const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const name = localStorage.getItem('username');
+        if (name) setUsername(name);
+    }, []);
   return (
     <BrowserRouter basename='/TAT'>
-      <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} />
+      <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} username={username}/>
       <Routes>
         <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />
         <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />

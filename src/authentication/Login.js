@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { Form, Container, Row, Col } from 'react-bootstrap';
 import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext ,useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from '../context/userContext';
 
 const Login = (props) => {
-    const { setIsAuthenticated } = props
+    const { setUsername, setIsAuthenticated } = useContext(UserContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,6 +31,7 @@ const Login = (props) => {
 
         if (json.success === true) {
             setIsAuthenticated(true);
+            setUsername(json.user.name);
 
             // Store token and user data
             localStorage.setItem('token', json.authtoken); // use json.authtoken (not authToken)
