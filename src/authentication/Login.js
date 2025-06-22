@@ -45,7 +45,7 @@ const Login = (props) => {
                 theme: "colored"
             });
 
-            navigate('/measurements');
+            navigate('/');
         } else {
             console.warn("Invalid Credentials");
             toast.error("Invalid Credentials. Please try again.");

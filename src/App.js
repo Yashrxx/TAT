@@ -63,10 +63,10 @@ function App() {
       <Routes>
         <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
         <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
-          <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard mode={mode} />} />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path='/measurements' element={<Measurements mode={mode} />} />
+          <Route path='/' element={<Measurements mode={mode} />} />
           <Route path='/top' element={<Top mode={mode} />} />
           <Route path='/fulldress' element={<FullDress mode={mode} />} />
           <Route path='/bottom' element={<Bottom mode={mode} />} />
