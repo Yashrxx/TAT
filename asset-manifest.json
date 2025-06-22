@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "/TAT/static/css/main.39517f74.css",
-    "main.js": "/TAT/static/js/main.8bf42e03.js",
+    "main.css": "/TAT/static/css/main.ace5569b.css",
+    "main.js": "/TAT/static/js/main.b8d595f4.js",
     "static/js/453.05c4eb3b.chunk.js": "/TAT/static/js/453.05c4eb3b.chunk.js",
     "static/media/blk-bg.png": "/TAT/static/media/blk-bg.3f790e6a57f2f45a3618.png",
     "static/media/aditiimg.jpeg": "/TAT/static/media/aditiimg.1f6f9eb5a02f3e033529.jpeg",
-    "static/media/wood-blk-bg.jpg": "/TAT/static/media/wood-blk-bg.e8f4105d09e40f73dd1d.jpg",
     "static/media/TAT_Logo.jpeg": "/TAT/static/media/TAT_Logo.f3506ade23c4ee9b2fa1.jpeg",
+    "static/media/slick.svg": "/TAT/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/TAT/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/TAT/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/TAT/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/TAT/index.html",
-    "main.39517f74.css.map": "/TAT/static/css/main.39517f74.css.map",
-    "main.8bf42e03.js.map": "/TAT/static/js/main.8bf42e03.js.map",
+    "main.ace5569b.css.map": "/TAT/static/css/main.ace5569b.css.map",
+    "main.b8d595f4.js.map": "/TAT/static/js/main.b8d595f4.js.map",
     "453.05c4eb3b.chunk.js.map": "/TAT/static/js/453.05c4eb3b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.39517f74.css",
-    "static/js/main.8bf42e03.js"
+    "static/css/main.ace5569b.css",
+    "static/js/main.b8d595f4.js"
   ]
 }
