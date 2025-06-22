@@ -1,14 +1,152 @@
+.parentx {
+    /* background-image: url('../assets/img/wood-blk-bg.jpg');
+    background-size: cover;
+    background-position: center; */
+    height: 100%;
+    width: 100vw;
+    /* background-color: bisque; */
+}
+
+.locate-form::before {
+    background: inherit;
+    box-shadow: inset 0 0 0 500px rgba(255, 255, 255, 0.01);
+    content: "";
+    position: absolute;
+    z-index: -1;
+    height: 110%;
+    width: 110%;
+    border-radius: 25px;
+    margin-top: 10px;
+    filter: blur(2px);
+}
+
+.locate-form {
+    position: relative;
+    background: inherit;
+    overflow: hidden;
+    transform: translate(36%, 10%);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 100%;
+    width: 60%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dark mode green glow */
+.box-shadow-dark {
+    border: 2px solid greenyellow;
+    box-shadow:
+        0 0 2px greenyellow,
+        0 0 4px greenyellow,
+        0 0 6px limegreen,
+        0 0 8px limegreen,
+        0 0 12px limegreen;
+    animation: neonPulseGreen 2s infinite ease-in-out;
+}
+
+/* Light mode blue glow */
+.box-shadow-light {
+    border: 2px solid aqua;
+    box-shadow:
+        0 0 2px aqua,
+        0 0 4px aqua,
+        0 0 6px deepskyblue,
+        0 0 10px dodgerblue,
+        0 0 12px dodgerblue;
+    animation: neonPulseBlue 2s infinite ease-in-out;
+}
+
+/* Green pulsing (12–15px range) */
+@keyframes neonPulseGreen {
+    0% {
+        box-shadow:
+            0 0 4px greenyellow,
+            0 0 6px greenyellow,
+            0 0 8px limegreen;
+    }
+
+    50% {
+        box-shadow:
+            0 0 6px greenyellow,
+            0 0 10px greenyellow,
+            0 0 14px limegreen;
+    }
+
+    100% {
+        box-shadow:
+            0 0 4px greenyellow,
+            0 0 6px greenyellow,
+            0 0 8px limegreen;
+    }
+}
+
+/* Blue pulsing (12–15px range) */
+@keyframes neonPulseBlue {
+    0% {
+        box-shadow:
+            0 0 4px aqua,
+            0 0 6px aqua,
+            0 0 8px deepskyblue;
+    }
+
+    50% {
+        box-shadow:
+            0 0 6px aqua,
+            0 0 10px aqua,
+            0 0 14px dodgerblue;
+    }
+
+    100% {
+        box-shadow:
+            0 0 4px aqua,
+            0 0 6px aqua,
+            0 0 8px deepskyblue;
+    }
+}
+
+.forms {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.text-shadow-light {
+    text-shadow: 1px 1px 5px cyan;
+}
+
+.text-shadow-dark {
+    text-shadow: 1px 1px 5px greenyellow;
+}
+
+.forms input::placeholder {
+    color: thistle;
+}
+
+@media (max-width: 550px) {
+    .parent {
+        background-image: url('../assets/img/blk-bg.png');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .locate-form {
+        transform: translateX(0%);
+        width: 100%;
+    }
+}
+
 .box {
-    height: 93vh;
-    /* background-color: #141414; */
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    /* background-image: url('../assets/img/wood-blk-bg.jpg'); */
 
     .btx {
-        background-color: greenyellow;
         height: 45px;
         width: 75%;
         text-decoration: none;
@@ -17,23 +155,17 @@
         justify-content: center;
         color: black;
         border-radius: 13px;
-        box-shadow:
-            0 0 2px greenyellow,
-            0 0 4px greenyellow,
-            0 0 6px limegreen;
         font-weight: 600;
     }
 
     .box-1 {
         height: 60%;
-        /* border: 2px solid brown; */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
 
         img {
-            /* border: 2px solid black; */
             height: 300px;
             width: 300px;
             border-radius: 15px;
@@ -42,7 +174,6 @@
 
     .box-2 {
         height: 60%;
-        /* border: 2px solid brown; */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -57,7 +188,6 @@
 
     .box-3 {
         height: 60%;
-        /* border: 2px solid brown; */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -70,13 +200,39 @@
             border-radius: 15px;
         }
     }
+
+    .box-shadow-dark {
+        border: 2px solid greenyellow;
+        box-shadow:
+            0 0 2px greenyellow,
+            0 0 4px greenyellow,
+            0 0 6px limegreen,
+            0 0 8px limegreen,
+            0 0 10px limegreen;
+    }
+
+    .box-shadow-light {
+        border: 2px solid cyan;
+
+        box-shadow:
+            0 0 2px cyan,
+            0 0 4px cyan,
+            0 0 6px lightblue,
+            0 0 8px blue,
+            0 0 10px blue;
+    }
+
+    .box-1,
+    .box-2,
+    .box-3 {
+        transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    }
 }
 
 @media (max-width:950px) {
     .box {
         height: 100%;
         width: 100vw;
-        background-color: #333333;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -114,7 +270,6 @@
 @media (max-width:550px) {
     .box {
         height: 100vh;
-        background-color: #333333;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

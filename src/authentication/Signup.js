@@ -62,7 +62,7 @@ const Signup = (props) => {
                     pauseOnHover: false,
                     theme: "colored"
                 });
-                navigate('/');
+                navigate('/measurements');
             }
             else {
                 toast.error("Signup Failed !! User already exists.");

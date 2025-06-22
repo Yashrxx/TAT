@@ -22,7 +22,7 @@ const Navbar = (props) => {
     }, [location])
 
     return (
-        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+        <nav className={`navbar ${props.mode === 'dark' ? 'nav-shadow-dark' : 'nav-shadow-light'} navbar-expand-lg navbar-${props.mode} bg-${props.mode}`} >
             <div className="container-fluid">
                 <a className="navbar-brand" href="/TAT" ><img style={{ height: "25px", width: "25px", filter: "invert(1)" }} src={TAT} alt="Error 404"></img></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +30,11 @@ const Navbar = (props) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/" >Home</Link>
-                        </li>
+                        {!isAuthenticated && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/">Home</Link>
+                            </li>
+                        )}
                         {isAuthenticated && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/measurements">Measurement</Link>
@@ -62,6 +64,9 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <Link className="nav-link" aria-disabled="true" to="/about" >AboutUs</Link>
                         </li>
+                        {/* <li className="nav-item">
+                            <Link className="nav-link" aria-disabled="true" to="/coverpage" >CoverPage</Link>
+                        </li> */}
                     </ul>
                     {isAuthenticated ? (
                         <div className="dropdown">

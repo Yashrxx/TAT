@@ -9,11 +9,12 @@ import About from './components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState ,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Signup from './authentication/Signup'
 import Login from './authentication/Login'
 import ProtectedRoute from './authentication/ProtectedRoute';
 import Dashboard from './dataValues/Dashboard';
+import CoverPage from './components/coverPage'
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
@@ -51,24 +52,26 @@ function App() {
   };
   const [username, setUsername] = useState('');
 
-    useEffect(() => {
-        const name = localStorage.getItem('username');
-        if (name) setUsername(name);
-    }, []);
+  useEffect(() => {
+    const name = localStorage.getItem('username');
+    if (name) setUsername(name);
+  }, []);
+
   return (
     <BrowserRouter basename='/TAT'>
-      <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} username={username}/>
+      <Navbar btnText={btnText} mode={mode} toggleMode={toggleMode} username={username} />
       <Routes>
-        <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />
-        <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode}/>} />
-        <Route path='/dashboard' element={<Dashboard mode={mode}/>} />
+        <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
+        <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
+          <Route path='/' element={<Home />} />
+        <Route path='/dashboard' element={<Dashboard mode={mode} />} />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-        <Route path='/' element={<Home />} />
-        <Route path='/measurements' element={<Measurements mode={mode}/>} />
-        <Route path='/top' element={<Top mode={mode}/>} />
-        <Route path='/fulldress' element={<FullDress mode={mode} />} />
-        <Route path='/bottom' element={<Bottom mode={mode}/>} />
-        <Route path='/about' element={<About mode={mode}/>} />
+          <Route path='/measurements' element={<Measurements mode={mode} />} />
+          <Route path='/top' element={<Top mode={mode} />} />
+          <Route path='/fulldress' element={<FullDress mode={mode} />} />
+          <Route path='/bottom' element={<Bottom mode={mode} />} />
+          <Route path='/about' element={<About mode={mode} />} />
+          <Route path='/coverpage' element={<CoverPage mode={mode} />} />
         </Route>
       </Routes>
     </BrowserRouter>
