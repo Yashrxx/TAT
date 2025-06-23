@@ -63,6 +63,7 @@ function App() {
       <Routes>
         <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
         <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} mode={mode} />} />
+        <Route path='/about' element={<About mode={mode} />} />
         <Route path='/home' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard mode={mode} />} />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
@@ -70,7 +71,6 @@ function App() {
           <Route path='/top' element={<Top mode={mode} />} />
           <Route path='/fulldress' element={<FullDress mode={mode} />} />
           <Route path='/bottom' element={<Bottom mode={mode} />} />
-          <Route path='/about' element={<About mode={mode} />} />
           <Route path='/coverpage' element={<CoverPage mode={mode} />} />
         </Route>
       </Routes>
