@@ -1,8 +1,10 @@
-import CoverPage from './coverPage'
-const Home = () => {
-    return (
-            <CoverPage/>
-    )
-}
+// import { useContext, useEffect } from 'react';
+import CoverPage from './coverPage';
+// import { UserContext } from '../context/userContext';
 
-export default Home
+const Home = () => {
+
+    return <CoverPage />;
+};
+
+export default Home;
